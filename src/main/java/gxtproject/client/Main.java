@@ -42,8 +42,10 @@ import com.sencha.gxt.widget.core.client.FramedPanel;
 import com.sencha.gxt.widget.core.client.box.MessageBox;
 import com.sencha.gxt.widget.core.client.button.TextButton;
 import com.sencha.gxt.widget.core.client.container.BoxLayoutContainer.BoxLayoutPack;
+import com.sencha.gxt.widget.core.client.container.SimpleContainer;
 import com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer;
 import com.sencha.gxt.widget.core.client.container.VerticalLayoutContainer.VerticalLayoutData;
+import com.sencha.gxt.widget.core.client.container.Viewport;
 import com.sencha.gxt.widget.core.client.event.SelectEvent;
 import com.sencha.gxt.widget.core.client.event.SelectEvent.SelectHandler;
 import com.sencha.gxt.widget.core.client.grid.ColumnConfig;
@@ -135,7 +137,9 @@ public class Main implements IsWidget, EntryPoint {
 
     @Override
     public void onModuleLoad() {
-        RootPanel.get().add(this);
+        Viewport viewport = new Viewport();
+        viewport.add(this);
+        RootPanel.get().add(viewport);
     }
 
     @Override
@@ -276,6 +280,7 @@ public class Main implements IsWidget, EntryPoint {
             fp.setAnimCollapse(true);
             fp.setWidth("100%");
             fp.setHeight(500);
+
             fp.addStyleName("margin-10");
             fp.setButtonAlign(BoxLayoutPack.CENTER);
 
@@ -287,7 +292,6 @@ public class Main implements IsWidget, EntryPoint {
 
             loader.load();
         }
-
         return fp;
     }
 
